@@ -1,0 +1,42 @@
+$lightBlue: #ABBCFF;
+$white: #FFF;
+$black: #000;
+
+.main {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: $white;
+  margin: 20px 0;
+}
+
+.stepNumber {
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: inset 0px 0px 0px 1px rgba($white, 1);
+  display: flex;
+  height: 33px;
+  justify-content: center;
+  width: 33px;
+  margin-right: 15px;
+}
+
+.stepData {
+  &__stepNumber {
+    font-size: 12px;
+    color: $lightBlue;
+  }
+  &__stepDesc {
+    font-size: 14px;
+    font-weight: bolder;
+    letter-spacing: 0.1rem;
+  }
+}
+
+.isActive {
+  .stepNumber {
+    font-weight: bold;
+    background-color: $lightBlue;
+    color: $black;
+  }
+}

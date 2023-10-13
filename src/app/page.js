@@ -1,95 +1,92 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
 
-export default function Home() {
+import { useState, useContext } from 'react';
+import styles from './page.module.scss'
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+
+import Sidebar from './components/molecules/Sidebar/Sidebar';
+// import { useRouter } from 'next/navigation'
+// import Link from 'next/link'
+import { AppContext } from './(state)/Provider';
+
+const stepsList = [
+  {
+    isActive: true,
+    stepNumber: 1,
+    stepDesc: 'YOUR INFO',
+  },
+  {
+    isActive: false,
+    stepNumber: 2,
+    stepDesc: 'SELECT PLAN',
+  },
+  {
+    isActive: false,
+    stepNumber: 3,
+    stepDesc: 'ADD-ONS',
+  },
+  {
+    isActive: false,
+    stepNumber: 4,
+    stepDesc: 'SUMMARY',
+  },
+]
+
+
+export default function Main({ children }) {;
+  // const router = useRouter()
+
+  const [state, setState] = useContext(AppContext)
+  const [steps, setSteps] = useState(stepsList);
+
+  function handleNextClick() {
+    const activeStepIndex = steps.findIndex(steps => steps.isActive)
+    const nextStepIndex = (activeStepIndex + 1)
+    if(nextStepIndex === stepsList.length) {
+      alert('Last Step')
+    } else {
+      const nextStepsList = steps.map((step , i) => {
+        return {
+          ...step,
+          isActive: nextStepIndex === i
+        }
+      })
+      setSteps(nextStepsList)
+      // router.push(`/${nextStepsList[nextStepIndex].stepNumber}`)
+    }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // const {name, email} = e.target
+
+    // console.log(name.value, name.name)
+    // console.log(email.value, email.name)
+  }
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <section className={styles.container}>
+        <Grid container>
+          <Grid item xs={12} md={4}>
+            <Sidebar steps={steps}></Sidebar>
+          </Grid>
+          <Grid item xs={12} md={8}>
+            <form onSubmit={handleSubmit}>
+              {children}
+              <Button type="submit" variant="contained" color="primary">
+                SEND
+              </Button>
+            </form>
+            <Button
+              onClick={handleNextClick}
+              variant="contained">NEXT STEP
+            </Button>
+            {state.name}
+          </Grid>
+        </Grid>
+      </section>
     </main>
   )
 }
