@@ -53,7 +53,7 @@
 }
 
 .customRadio {
-  display: none;
+  display: none!important;
   &+* {
     font-weight: bold;
     position: absolute;
