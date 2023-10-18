@@ -124,5 +124,5 @@ a {
 .mt50{margin-top: 50px;}
 
 [class^="page_customRadio"] {
-  display: none;
+  display: none!important;
 }
