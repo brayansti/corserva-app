@@ -73,16 +73,20 @@ const Layout = ({ children }) => {
                 {currentStep === 4 && <FormStep4></FormStep4>}
                 {currentStep === 5 && <FormStep5></FormStep5>}
               </>
-              <div className={styles.buttons}>
-                <Button
-                  onClick={handlePrevClick}
-                  variant="contained">Go Back
-                </Button>
-                <Button
-                  onClick={handleNextClick}
-                  variant="contained">Next Step
-                </Button>
-              </div>
+              {(currentStep > 0 && currentStep < 5) && (
+                <div className={styles.buttons} >
+                  {currentStep > 1 && (
+                    <Button
+                      onClick={handlePrevClick}
+                      variant="contained">Go Back
+                    </Button>
+                  )}
+                  <Button
+                    onClick={handleNextClick}
+                    variant="contained">Next Step
+                  </Button>
+                </div>
+              )}
             </form>
           </Grid>
         </Grid>
