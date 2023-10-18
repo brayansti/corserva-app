@@ -1,19 +1,15 @@
-$lightBlue: #ABBCFF;
-$white: #FFF;
-$black: #000;
-
 .main {
   cursor: pointer;
   display: flex;
   align-items: center;
-  color: $white;
+  color: var(--white);
   margin: 20px 0;
 }
 
 .stepNumber {
   align-items: center;
   border-radius: 50%;
-  box-shadow: inset 0px 0px 0px 1px rgba($white, 1);
+  box-shadow: inset 0px 0px 0px 1px var(--white);
   display: flex;
   height: 33px;
   justify-content: center;
@@ -24,7 +20,7 @@ $black: #000;
 .stepData {
   &__stepNumber {
     font-size: 12px;
-    color: $lightBlue;
+    color: var(--lightBlue);
   }
   &__stepDesc {
     font-size: 14px;
@@ -36,7 +32,7 @@ $black: #000;
 .isActive {
   .stepNumber {
     font-weight: bold;
-    background-color: $lightBlue;
-    color: $black;
+    background-color: var(--lightBlue);
+    color: var(--black);
   }
 }

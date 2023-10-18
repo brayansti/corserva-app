@@ -1,0 +1,76 @@
+.step{
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 0px 2px var(--lightGray);
+  display: block;
+  height: 160px;
+  position: relative;
+  width: 138px;
+  &::after, &::before{
+    content: '';
+    display: block;
+    height: 40px;
+    position: absolute;
+    width: 40px;
+  }
+  &::after {
+    top: 15px;
+    left: 15px;
+  }
+  &::before {
+    bottom: 0px;
+    color: var(--grey);
+    left: 15px;
+    position: absolute;
+  }
+  &__step1{
+    &::after {
+      background-image: url(../../../../../public/assets/plan_arcade.png);
+    }
+    &::before {
+      content: '$9/mo';
+    }
+  }
+  &__step2{
+    &::after {
+      background-image: url(../../../../../public/assets/plan_advanced.png);
+    }
+    &::before {
+      content: '$12/mo';
+    }
+  }
+  &__step3{
+    &::after {
+      background-image: url(../../../../../public/assets/plan_pro.png);
+    }
+    &::before {
+      content: '$15/mo';
+    }
+  }
+}
+
+.active {
+  box-shadow: inset 0px 0px 0px 2px var(--purple);
+}
+
+.customRadio {
+  display: none;
+  &+* {
+    font-weight: bold;
+    position: absolute;
+    bottom: 50px;
+    left: 15px;
+  }
+}
+
+.stepRadioGroup {
+  display: flex;
+  grid-gap: 20px;
+}
+
+.suscriptionBox {
+  background-color: var(--lightGray);
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 15px;
+}

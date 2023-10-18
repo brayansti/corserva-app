@@ -1,0 +1,15 @@
+.finalBox {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  h2 {
+    margin-top: 20px;
+  }
+  p{
+    margin-top: 20px;
+    color: var(--grey);
+  }
+}

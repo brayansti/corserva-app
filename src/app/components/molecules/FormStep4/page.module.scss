@@ -1,0 +1,40 @@
+.resumeBox {
+  background-color: var(--lightGray);
+  padding: 15px;
+  border-radius: 10px;
+  &__item {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding: 15px 0;
+    &:nth-of-type(1) {
+      border-bottom: 1px solid var(--grey);
+    }
+    strong {
+      color: var(--black)!important;
+    }
+    &_left{
+      color: var(--grey);
+    }
+    &_right{
+      text-align: right;
+    }
+  }
+}
+
+.resumePriceBox {
+  padding: 15px;
+  &__item {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    strong {
+      font-size: 20px;
+      color: var(--purple);
+    }
+    &_left{
+      color: var(--grey);
+    }
+    &_right{
+      text-align: right;
+    }
+  }
+}

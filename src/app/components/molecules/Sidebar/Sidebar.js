@@ -1,18 +1,18 @@
 import styles from './Sidebar.module.scss'
 import Image from 'next/image'
 
-import Step from '../../atoms/Step/Step'
+import SidebarStep from '../../atoms/Step/SidebarStep'
+const imageLocation = '/assets/oval.png'
 
 export default function Sidebar(props) {
   const {steps} = props
-  const imageLocation = '/assets/oval.png'
 
   return (
     <section className={styles.main}>
 
       <div className={styles.steps}>
         {steps.map(step => (
-          <Step key={step.stepNumber} {...step}></Step>
+          <SidebarStep key={step.stepNumber} {...step}></SidebarStep>
         ))}
       </div>
 

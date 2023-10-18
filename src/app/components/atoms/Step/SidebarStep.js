@@ -1,19 +1,22 @@
+import { useContext } from 'react';
+import { AppContext } from '@/app/(state)/Provider';
+
 import styles from './Step.module.scss'
 import propTypes from 'prop-types';
-import { useRouter } from 'next/navigation'
 
-const Step = (props) => {
-  const {isActive, stepNumber, stepDesc} = props
 
-  const router = useRouter()
+const SidebarStep = (props) => {
+  const { stepNumber, stepDesc} = props
+  const {state, dispatch} = useContext(AppContext);
+  const {currentStep} = state
 
   const handleOnClick = () => {
-    router.push(`/${stepNumber}`)
+    dispatch({ type: 'UPDATE_STEP', payload: stepNumber });
   }
   
   return (
     // <section className={styles.main} onClick={handleOnClick}>
-    <section className={`${styles.main} ${isActive ? styles.isActive : null}`} onClick={handleOnClick}>
+    <section className={`${styles.main} ${(currentStep === stepNumber) ? styles.isActive : null}`} onClick={handleOnClick}>
       <div className={styles.stepNumber}>
         {stepNumber}
       </div>
@@ -25,11 +28,10 @@ const Step = (props) => {
   );
 }
 
-Step.propTypes = {
-  isActive: propTypes.bool,
+SidebarStep.propTypes = {
   stepNumber: propTypes.number,
   stepDesc: propTypes.string,
 }
 
 
-export default Step;
+export default SidebarStep;
